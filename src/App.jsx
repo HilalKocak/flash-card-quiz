@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import FlashCardList from './FlashCardList'
-
+import './App.css'
 
 function App() {
   const [flashCards, setFlashCards] = useState(SAMPLE_FLASHCARDS)
@@ -8,7 +8,6 @@ function App() {
   return (
     <>
       <div>
-       hello
        <FlashCardList flashCards={flashCards}/>
       </div>
    

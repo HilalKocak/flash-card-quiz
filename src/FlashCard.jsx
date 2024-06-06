@@ -4,8 +4,24 @@ import { useState } from 'react'
 export default function FlashCard({ flashCard }) {
   const [flip, setFlip] = useState(false)
     return (
-    <div onClick={() => setFlip(!flip)}>
+    <div 
+    className={`card ${flip ? flip : ''}`}
+    onClick={() => setFlip(!flip)}>
         {flip ? flashCard.answer : flashCard.question}
+
+        <div className='front'>
+
+            <div className='flascard-options'>
+                {flashCard.options.map(option => {
+                    <div className="flashcard-option">
+                        {option}
+                    </div>
+                })}
+            </div>
+        </div>
+
+        <div className="back">{flashCard.answer}</div>
     </div>
+    
   )
 }
