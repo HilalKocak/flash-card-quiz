@@ -12,6 +12,11 @@ body {
     background-color: white;
     height: 150px;
     width: 150px;
+    transform: rotateY(var(--rotate-y, 0));
+}
+
+.card.flip {
+    --rotate-y: 180deg;
 }
 
 .card .front,

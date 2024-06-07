@@ -5,7 +5,7 @@ export default function FlashCard({ flashCard }) {
   const [flip, setFlip] = useState(false)
     return (
     <div 
-        className={`card ${flip ? flip : ''}`}
+        className={`card ${flip ? 'flip' : ''}`}
         onClick={() => setFlip(!flip)}
     >
         <div className='front'>
