@@ -12,7 +12,7 @@ export default function FlashCard({ flashCard }) {
             {flashCard.question}
             <div className='flascard-options'>
                 {flashCard.options.map(option => {
-                    return <div className="flashcard-option">
+                    return <div className="flascard-option">
                         {option}
                     </div>
                 })}
