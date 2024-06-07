@@ -48,7 +48,7 @@ function App() {
     e.preventDefault()
 
     axios
-    .get('https://opentdb.com/api.php?amount=10', {
+    .get('https://opentdb.com/api.php', {
       params: {
         amount: amountEl.current.value,
         category: categoryEl.current.value
