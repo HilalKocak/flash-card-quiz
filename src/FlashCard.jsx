@@ -5,15 +5,14 @@ export default function FlashCard({ flashCard }) {
   const [flip, setFlip] = useState(false)
     return (
     <div 
-    className={`card ${flip ? flip : ''}`}
-    onClick={() => setFlip(!flip)}>
-        {flip ? flashCard.answer : flashCard.question}
-
+        className={`card ${flip ? flip : ''}`}
+        onClick={() => setFlip(!flip)}
+    >
         <div className='front'>
-
+            {flashCard.question}
             <div className='flascard-options'>
                 {flashCard.options.map(option => {
-                    <div className="flashcard-option">
+                    return <div className="flashcard-option">
                         {option}
                     </div>
                 })}
