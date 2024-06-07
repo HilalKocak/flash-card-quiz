@@ -1,8 +1,22 @@
-# React + Vite
+# Flashcard Generator Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This application allows you to generate questions in different categories and create flashcards. Questions are fetched from the Open Trivia Database (OpenTDB) API.
 
-Currently, two official plugins are available:
+To clone the repository run:
+```
+git clone https://github.com/HilalKocak/flash-card-quiz.git
+```
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Install dependencies:
+```
+npm install
+npm i axios
+```
+
+To run the application:
+```
+npm run dev
+```
+
+Here is the preview of the application:
+![Screenshot of the app](preview.png)
