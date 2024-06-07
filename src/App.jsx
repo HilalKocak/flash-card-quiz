@@ -1,13 +1,26 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import FlashCardList from './FlashCardList'
 import './App.css'
 import axios from "axios";
 
 function App() {
-  const [flashCards, setFlashCards] = useState(SAMPLE_FLASHCARDS)
+  const [flashCards, setFlashCards] = useState([])
+  const [categories, setCategories] = useState([])
+  const categoryEl = useRef()
+
   useEffect(() => {
     axios
-    .get('https://opentdb.com/api.php?amount=20')
+    .get('https://opentdb.com/api_category.php')
+    .then(res => {
+      setCategories(res.data.trivia_categories)
+    })
+
+  }, [])
+
+
+  useEffect(() => {
+    axios
+    .get('https://opentdb.com/api.php?amount=10')
     .then(res => {
       setFlashCards(res.data.results.map((questionItem, index) => {
         const answer = decodeString(questionItem.correct_answer)
@@ -30,9 +43,26 @@ function App() {
     return textArea.value
   }
 
+  function handleSubmit(e) {
+    e.preventDefault()
+  }
+
   return (
     <>
-      <div>
+    <form className='header' onSubmit={handleSubmit}>
+      <div className="form-group">
+        <label htmlFor="category">Category</label>
+        <select ref={categoryEl} id="category">
+          {categories.map((category) => {
+            return <option value={category.id} key={category.id}>
+              {category.name}
+            </option>
+          })}
+        </select>
+      </div>
+
+    </form>
+      <div className='container'>
        <FlashCardList flashCards={flashCards}/>
       </div>
    
@@ -40,62 +70,6 @@ function App() {
   )
 }
 
-const SAMPLE_FLASHCARDS = [
-  {
-    id: 1,
-    question: 'What is 2 + 2?',
-    answer: '4',
-    options: [
-      '2',
-      '3',
-      '4',
-      '5'
-    ]
-  },
-  {
-    id: 2,
-    question: 'What is the capital of France?',
-    answer: 'Paris',
-    options: [
-      'Berlin',
-      'Madrid',
-      'Paris',
-      'Rome'
-    ]
-  },
-  {
-    id: 3,
-    question: 'Which planet is known as the Red Planet?',
-    answer: 'Mars',
-    options: [
-      'Earth',
-      'Jupiter',
-      'Mars',
-      'Saturn'
-    ]
-  },
-  {
-    id: 4,
-    question: 'What is the largest ocean on Earth?',
-    answer: 'Pacific Ocean',
-    options: [
-      'Atlantic Ocean',
-      'Indian Ocean',
-      'Pacific Ocean',
-      'Arctic Ocean'
-    ]
-  },
-  {
-    id: 5,
-    question: 'Who wrote "Romeo and Juliet"?',
-    answer: 'William Shakespeare',
-    options: [
-      'Charles Dickens',
-      'William Shakespeare',
-      'Jane Austen',
-      'Mark Twain'
-    ]
-  }
-]
+
 
 export default App
